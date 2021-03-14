@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Archivos;
 
 import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author JUAN MARIN
- */
-public static void main(String[] args) {
+public class Main {
+    
+   
+    
+    public static void main(String[] args) {
         menu();
     }
 
@@ -40,8 +35,52 @@ public static void main(String[] args) {
         String pos, password, cantidadNueva;
         double ventaTotales = 0;
         String ventas="Ventas: \n";
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
-        while (!salir) {
+       do {
 
             opcion = Integer.parseInt(JOptionPane.showInputDialog(
                     "Menú Principal \n"
@@ -52,7 +91,6 @@ public static void main(String[] args) {
                     + "5. Salir. \n"
                     + "Digite una opción: "
             ));
-            try {
                 switch (opcion) {
                     case 1:
 
@@ -123,22 +161,73 @@ public static void main(String[] args) {
                         
                         break;
                     case 5:
-
                          salir = true;
                     default:
                         JOptionPane.showMessageDialog(null, "¡HASTA LUEGO,VUELVA PRONTO!");
-                }
+                }     
+                }while(opcion!=5); 
+                 System.exit(0);
+       }
+       
 
- 
-            } catch (InputMismatchException e) {
-                JOptionPane.showMessageDialog(null, "Debes escribir un numero");
-                sn.next();
-            }
-
-        }
-
-        JOptionPane.showMessageDialog(null, "MAQUINA CERRADA");
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
 
     
