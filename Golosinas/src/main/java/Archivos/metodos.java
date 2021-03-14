@@ -6,7 +6,6 @@
 package Archivos;
 
 /**
- *
  * @author JUAN MARIN AND NICOLAS SANCHEZ
  */
 public class metodos {
