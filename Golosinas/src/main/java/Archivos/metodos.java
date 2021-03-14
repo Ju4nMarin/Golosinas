@@ -108,7 +108,59 @@ public class metodos {
 
     }
     
+  public static void reducirPosicion(int[][] matriz, int fila, int columna, int cantidad) {
+        matriz[fila][columna] -= cantidad;
+    }
+
+    public static boolean hayValorPosicion(int[][] matriz, int fila, int columna) {
+        if (matriz[fila][columna] > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void mostrarGolosionas(String[][] nombres, double[][] precios) {
+        int i, j;
+        String info = "----------[GOLOSINAS]----------\n";
+        for (i = 0; i < nombres.length; i++) {
+            for (j = 0; j < nombres[i].length; j++) {
+                info += i + "" + j + "  " + nombres[i][j] + "  " + precios[i][j] + "\n";
+            }
+            info += "\n";
+        }
+        JOptionPane.showMessageDialog(null, info);
+
+    }
     
+    public static void mostrarVentas(String[][] nombres, double[][] precios) {
+        int i, j;
+        String info = "----------[GOLOSINAS]----------\n";
+        for (i = 0; i < nombres.length; i++) {
+            for (j = 0; j < nombres[i].length; j++) {
+                info += i + "" + j + "  " + nombres[i][j] + "  " + precios[i][j] + "\n";
+            }
+            info += "\n";
+        }
+        JOptionPane.showMessageDialog(null, info);
+
+    }
+
+
+    public static boolean cadenaIguales(String cadena1, String cadena2) {
+
+        if (cadena1.equals(cadena2)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+  
+    public static void aumentarPosicion(int[][] matriz, int fila, int columna, int cantidad) {
+        matriz[fila][columna] += cantidad;
+    }  
     
     
     

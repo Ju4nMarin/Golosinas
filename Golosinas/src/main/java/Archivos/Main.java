@@ -5,57 +5,142 @@
  */
 package Archivos;
 
+import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author JUAN MARIN
  */
-public class Main {
-   
-    public static void main(String args[]){
-        metodos miData=null;
-        int vend, mes, pos;
-        
-        int op;
-        
-        do{
-            op=Integer.parseInt(JOptionPane.showInputDialog(
-            "Menú Principal \n"+
-            "1. Pedir golosina. \n"+
-            "2. Mostrar golosinas. \n"+
-            "3. Rellenar golosinas. \n"+
-            "4. Estadisticas. \n"+
-            "5. Salir. \n"+
-            "Digite una opción: "        
-            ));
-            
-            switch(op){
-                case 1:
-                    
-                    
-                break;
-                case 2:
-                 break; 
-                case 3:
-                 break;
-                case 4:
-                 break;   
-                case 5:                    
-                    JOptionPane.showMessageDialog(null, 
-                    "Adios!!!");
-                break;
-                default:
-                    JOptionPane.showMessageDialog(null, 
-                    "Error!: Opción invalida, intente"
-                    + " nuevamente.");                                    
-            }
-            
-        }while(op!=7);
-        
-        System.exit(0);
+public static void main(String[] args) {
+        menu();
     }
-    
+
+    public static void menu() {
+
+        String[][] nombresGolosinas = {
+            {"KitKat", "Chicles de fresa", "Lacasitos", "Palotes"},
+            {"Kinder Bueno", "Bolsa variada Haribo", "Chetoos", "Twix"},
+            {"Kinder Bueno", "M&M'S", "Papa Delta", "Chicles de menta"},
+            {"Lacasitos", "Crunch", "Milkybar", "KitKat"}
+        };
+
+        double[][] precio = {
+            {1000, 200, 500, 950},
+            {1800, 100, 120, 100},
+            {1750, 130, 120, 800},
+            {1500, 110, 720, 350}
+        };
+
+        int cantidad[][] = new int[4][4];
+        rellenarMatriz(cantidad, 5);
+
+        boolean salir = false;
+        int opcion, fila, columna;
+        String pos, password, cantidadNueva;
+        double ventaTotales = 0;
+        String ventas="Ventas: \n";
+
+        while (!salir) {
+
+            opcion = Integer.parseInt(JOptionPane.showInputDialog(
+                    "Menú Principal \n"
+                    + "1. Pedir golosina. \n"
+                    + "2. Mostrar golosinas. \n"
+                    + "3. Rellenar golosinas. \n"
+                    + "4. Estadisticas. \n"
+                    + "5. Salir. \n"
+                    + "Digite una opción: "
+            ));
+            try {
+                switch (opcion) {
+                    case 1:
+
+                        pos = pedirCadena("Introduce la posicion que quieras");
+
+                        if (validarPos(nombresGolosinas, pos)) {
+
+                            fila = extraerNumero(pos, 0);
+                            columna = extraerNumero(pos, 1);
+
+                            if (hayValorPosicion(cantidad, fila, columna)) {
+
+                                JOptionPane.showMessageDialog(null, "Aqui tiene su golosiona: " + nombresGolosinas[fila][columna] + ". Gracias por su compra");
+
+                                reducirPosicion(cantidad, fila, columna, 1);
+
+                                ventaTotales += precio[fila][columna];
+                                
+                                ventas += nombresGolosinas[fila][columna]+" "+precio[fila][columna]+"\n";
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No hay mas golosinas de este tipo, espere al técnico para que la rellene");
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La posicion introducida no es valida");
+                        }
+
+                        break;
+                    case 2:
+
+                        mostrarGolosionas(nombresGolosinas, precio);
+
+                        break;
+                    case 3:
+
+                        password = pedirCadena("Introduce la contraseña");
+
+                        if (cadenaIguales(password, "Maquina2021")) {
+
+                            pos = pedirCadena("Introduce la posicion que quieras");
+
+                            fila = extraerNumero(pos, 0);
+                            columna = extraerNumero(pos, 1);
+
+                            if (validarPos(nombresGolosinas, pos)) {
+
+                                cantidadNueva = pedirInteger("Introduce la cantidad");
+                                int temp;
+                                temp = Integer.parseInt(cantidadNueva);
+
+                                aumentarPosicion(cantidad, fila, columna, temp);
+
+                                JOptionPane.showMessageDialog(null, "Se ha incrementado la cantidad");
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "La posicion introducida no es valida");
+                            }
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "La contraseña incorrecta");
+                        }
+
+                        break;
+                    case 4:
+
+                        JOptionPane.showMessageDialog(null,ventas+"Ganancia Total = " + ventaTotales);
+                        
+                        break;
+                    case 5:
+
+                         salir = true;
+                    default:
+                        JOptionPane.showMessageDialog(null, "¡HASTA LUEGO,VUELVA PRONTO!");
+                }
+
+ 
+            } catch (InputMismatchException e) {
+                JOptionPane.showMessageDialog(null, "Debes escribir un numero");
+                sn.next();
+            }
+
+        }
+
+        JOptionPane.showMessageDialog(null, "MAQUINA CERRADA");
+
+    }
+
     
     
     
