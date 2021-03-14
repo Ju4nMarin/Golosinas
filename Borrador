@@ -1,12 +1,11 @@
 package ejercicio_matrices_ddr_08;
 
 import java.util.InputMismatchException;
-import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class Ejercicio_matrices_DDR_08 {
     
-    static Scanner sn = new Scanner(System.in);
+   
     
     public static void main(String[] args) {
         menu();
@@ -37,7 +36,7 @@ public class Ejercicio_matrices_DDR_08 {
         double ventaTotales = 0;
         String ventas="Ventas: \n";
 
-        while (!salir) {
+       do {
 
             opcion = Integer.parseInt(JOptionPane.showInputDialog(
                     "Menú Principal \n"
@@ -48,7 +47,6 @@ public class Ejercicio_matrices_DDR_08 {
                     + "5. Salir. \n"
                     + "Digite una opción: "
             ));
-            try {
                 switch (opcion) {
                     case 1:
 
@@ -119,23 +117,14 @@ public class Ejercicio_matrices_DDR_08 {
                         
                         break;
                     case 5:
-
                          salir = true;
                     default:
                         JOptionPane.showMessageDialog(null, "¡HASTA LUEGO,VUELVA PRONTO!");
-                }
-
- 
-            } catch (InputMismatchException e) {
-                JOptionPane.showMessageDialog(null, "Debes escribir un numero");
-                sn.next();
-            }
-
-        }
-
-        JOptionPane.showMessageDialog(null, "MAQUINA CERRADA");
-
-    }
+                }     
+                }while(opcion!=5); 
+                 System.exit(0);
+       }
+       
 
     public static void rellenarMatriz(int[][] matriz, int num) {
 
@@ -260,5 +249,7 @@ public class Ejercicio_matrices_DDR_08 {
     public static void aumentarPosicion(int[][] matriz, int fila, int columna, int cantidad) {
         matriz[fila][columna] += cantidad;
     }
+
+}
 
 }
