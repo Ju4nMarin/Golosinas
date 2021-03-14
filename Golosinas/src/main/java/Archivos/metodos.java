@@ -6,7 +6,7 @@
 package Archivos;
 
 /**
- *
+ *Hola
  * @author JUAN MARIN
  */
 public class metodos {
