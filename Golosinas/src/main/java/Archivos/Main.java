@@ -22,21 +22,26 @@ public class Main {
         do{
             op=Integer.parseInt(JOptionPane.showInputDialog(
             "Menú Principal \n"+
-            "1. Crear y cargar matriz de ventas. \n"+
-            "2. Mostrar ventas. \n"+
-            "3. Mostrar ventas de un vendedor. \n"+
-            "4. Mostrar ventas de un mes. \n"+
-            "5. Determinar el mejor vendedor del año. \n"+
-            "6. Determinar el mejor mes de ventas. \n"+        
-            "7. Salir. \n"+
-            "Entre su opción: ?"        
+            "1. Pedir golosina. \n"+
+            "2. Mostrar golosinas. \n"+
+            "3. Rellenar golosinas. \n"+
+            "4. Estadisticas. \n"+
+            "5. Salir. \n"+
+            "Digite una opción: "        
             ));
             
             switch(op){
-                
-                    }
+                case 1:
+                    
+                    
                 break;
-                case 7:                    
+                case 2:
+                 break; 
+                case 3:
+                 break;
+                case 4:
+                 break;   
+                case 5:                    
                     JOptionPane.showMessageDialog(null, 
                     "Adios!!!");
                 break;
