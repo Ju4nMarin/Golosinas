@@ -7,7 +7,7 @@ package Archivos;
 
 /**
  *Hola
- * @author JUAN MARIN
+ * @author JUAN MARIN AND NICOLAS SANCHEZ
  */
 public class metodos {
 
