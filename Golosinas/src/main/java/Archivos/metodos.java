@@ -5,6 +5,8 @@
  */
 package Archivos;
 
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -28,7 +30,7 @@ public class metodos {
 
     };
 
-    double[][] cantidad = {
+    int cantidad[][] = {
         {5, 5, 5, 5},
         {5, 5, 5, 5},
         {5, 5, 5, 5},
@@ -36,9 +38,75 @@ public class metodos {
 
     };
     
+    public static void rellenarMatriz(int[][] matriz, int num) {
 
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz.length; j++) {
+                matriz[i][j] = num;
+            }
+        }
 
-    
+    }
+
+    public static String pedirCadena(String mensaje) {
+        String cadena;
+        cadena = JOptionPane.showInputDialog(null, mensaje);
+
+        return cadena;
+
+    }
+
+    public static String pedirInteger(String mensaje) {
+        String numero;
+        numero = JOptionPane.showInputDialog(null, mensaje);
+        Integer.parseInt(numero);
+
+        return numero;
+
+    }
+
+    public static boolean validarPos(String[][] matriz, String pos) {
+
+        if (pos.length() != 2) {
+            return false;
+        }
+
+        if (!(esNumero(pos.substring(0, 1)) && esNumero(pos.substring(1, 2)))) {
+            return false;
+        }
+
+        int fila = extraerNumero(pos, 0);
+        int columna = extraerNumero(pos, 1);
+
+        if (!((fila >= 0 && fila < matriz.length) && (columna >= 0 && columna < matriz[0].length))) {
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public static boolean esNumero(String num) {
+
+        try {
+            Integer.parseInt(num);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+    }
+
+    public static int extraerNumero(String numero, int pos) {
+
+        int num = -1;
+        if (esNumero(numero)) {
+            num = Integer.parseInt(numero.substring(pos, pos + 1));
+        }
+
+        return num;
+
+    }
     
     
     
