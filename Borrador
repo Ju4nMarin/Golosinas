@@ -1,12 +1,18 @@
-package ejercicio_matrices_ddr_08;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Archivos;
 
-import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
-public class Ejercicio_matrices_DDR_08 {
-    
-   
-    
+/**
+ *
+ * @authors JUAN MARIN and NICOLAS SANCHEZ.
+ */
+public class Main {
+
     public static void main(String[] args) {
         menu();
     }
@@ -34,9 +40,8 @@ public class Ejercicio_matrices_DDR_08 {
         int opcion, fila, columna;
         String pos, password, cantidadNueva;
         double ventaTotales = 0;
-        String ventas="Ventas: \n";
-
-       do {
+        String ventas = "Ventas: \n" + "-------------------------\n";
+        do {
 
             opcion = Integer.parseInt(JOptionPane.showInputDialog(
                     "Menú Principal \n"
@@ -47,84 +52,83 @@ public class Ejercicio_matrices_DDR_08 {
                     + "5. Salir. \n"
                     + "Digite una opción: "
             ));
-                switch (opcion) {
-                    case 1:
+            switch (opcion) {
+                case 1:
 
-                        pos = pedirCadena("Introduce la posicion que quieras");
+                    pos = pedirCadena("Introdusca la posicion  de la golosina que quiera");
+
+                    if (validarPos(nombresGolosinas, pos)) {
+
+                        fila = extraerNumero(pos, 0);
+                        columna = extraerNumero(pos, 1);
+
+                        if (hayValorPosicion(cantidad, fila, columna)) {
+
+                            JOptionPane.showMessageDialog(null, "Aqui tiene su golosiona: " + nombresGolosinas[fila][columna] + ". ¡Gracias por su compra!");
+
+                            reducirPosicion(cantidad, fila, columna, 1);
+
+                            ventaTotales += precio[fila][columna];
+
+                            ventas += nombresGolosinas[fila][columna] + "  $" + precio[fila][columna] + "\n";
+
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No hay mas golosinas de este tipo");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La posicion introducida no es valida");
+                    }
+
+                    break;
+                case 2:
+
+                    mostrarGolosionas(nombresGolosinas, precio);
+
+                    break;
+                case 3:
+
+                    password = pedirCadena("Introdusca la contraseña");
+
+                    if (cadenaIguales(password, "Maquina2021")) {
+                        JOptionPane.showMessageDialog(null, "Acceso Concedido");
+                        pos = pedirCadena("Introdusca la posicion de la golosina");
+
+                        fila = extraerNumero(pos, 0);
+                        columna = extraerNumero(pos, 1);
 
                         if (validarPos(nombresGolosinas, pos)) {
 
-                            fila = extraerNumero(pos, 0);
-                            columna = extraerNumero(pos, 1);
+                            cantidadNueva = pedirInteger("Introduce la cantidad");
+                            int temp;
+                            temp = Integer.parseInt(cantidadNueva);
 
-                            if (hayValorPosicion(cantidad, fila, columna)) {
+                            aumentarPosicion(cantidad, fila, columna, temp);
 
-                                JOptionPane.showMessageDialog(null, "Aqui tiene su golosiona: " + nombresGolosinas[fila][columna] + ". Gracias por su compra");
-
-                                reducirPosicion(cantidad, fila, columna, 1);
-
-                                ventaTotales += precio[fila][columna];
-                                
-                                ventas += nombresGolosinas[fila][columna]+" "+precio[fila][columna]+"\n";
-
-                            } else {
-                                JOptionPane.showMessageDialog(null, "No hay mas golosinas de este tipo, espere al técnico para que la rellene");
-                            }
+                            JOptionPane.showMessageDialog(null, "Se han agregado " + temp + " " + nombresGolosinas[fila][columna]);
 
                         } else {
                             JOptionPane.showMessageDialog(null, "La posicion introducida no es valida");
                         }
 
-                        break;
-                    case 2:
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Acceso Denegado, Introdusca nuevamente la constraseña");
+                    }
 
-                        mostrarGolosionas(nombresGolosinas, precio);
+                    break;
+                case 4:
 
-                        break;
-                    case 3:
+                    JOptionPane.showMessageDialog(null, ventas + "-------------------------\n" + "Ganancia Total: $" + ventaTotales);
 
-                        password = pedirCadena("Introduce la contraseña");
-
-                        if (cadenaIguales(password, "Maquina2021")) {
-
-                            pos = pedirCadena("Introduce la posicion que quieras");
-
-                            fila = extraerNumero(pos, 0);
-                            columna = extraerNumero(pos, 1);
-
-                            if (validarPos(nombresGolosinas, pos)) {
-
-                                cantidadNueva = pedirInteger("Introduce la cantidad");
-                                int temp;
-                                temp = Integer.parseInt(cantidadNueva);
-
-                                aumentarPosicion(cantidad, fila, columna, temp);
-
-                                JOptionPane.showMessageDialog(null, "Se ha incrementado la cantidad");
-
-                            } else {
-                                JOptionPane.showMessageDialog(null, "La posicion introducida no es valida");
-                            }
-
-                        } else {
-                            JOptionPane.showMessageDialog(null, "La contraseña incorrecta");
-                        }
-
-                        break;
-                    case 4:
-
-                        JOptionPane.showMessageDialog(null,ventas+"Ganancia Total = " + ventaTotales);
-                        
-                        break;
-                    case 5:
-                         salir = true;
-                    default:
-                        JOptionPane.showMessageDialog(null, "¡HASTA LUEGO,VUELVA PRONTO!");
-                }     
-                }while(opcion!=5); 
-                 System.exit(0);
-       }
-       
+                    break;
+                case 5:
+                    salir = true;
+                default:
+                    JOptionPane.showMessageDialog(null, "¡HASTA LUEGO,VUELVA PRONTO!");
+            }
+        } while (opcion != 5);
+        System.exit(0);
+    }
 
     public static void rellenarMatriz(int[][] matriz, int num) {
 
@@ -213,27 +217,13 @@ public class Ejercicio_matrices_DDR_08 {
         String info = "----------[GOLOSINAS]----------\n";
         for (i = 0; i < nombres.length; i++) {
             for (j = 0; j < nombres[i].length; j++) {
-                info += i + "" + j + "  " + nombres[i][j] + "  " + precios[i][j] + "\n";
+                info += i + "" + j + "  " + nombres[i][j] + "  $" + precios[i][j] + "\n";
             }
             info += "\n";
         }
         JOptionPane.showMessageDialog(null, info);
 
     }
-    
-    public static void mostrarVentas(String[][] nombres, double[][] precios) {
-        int i, j;
-        String info = "----------[GOLOSINAS]----------\n";
-        for (i = 0; i < nombres.length; i++) {
-            for (j = 0; j < nombres[i].length; j++) {
-                info += i + "" + j + "  " + nombres[i][j] + "  " + precios[i][j] + "\n";
-            }
-            info += "\n";
-        }
-        JOptionPane.showMessageDialog(null, info);
-
-    }
-
 
     public static boolean cadenaIguales(String cadena1, String cadena2) {
 
@@ -245,11 +235,8 @@ public class Ejercicio_matrices_DDR_08 {
 
     }
 
-  
     public static void aumentarPosicion(int[][] matriz, int fila, int columna, int cantidad) {
         matriz[fila][columna] += cantidad;
     }
-
-}
 
 }
