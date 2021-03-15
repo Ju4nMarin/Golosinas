@@ -7,7 +7,6 @@ package Archivos;
 
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @authors JUAN MARIN and NICOLAS SANCHEZ.
@@ -41,7 +40,7 @@ public class Main {
         int opcion, fila, columna;
         String pos, password, cantidadNueva;
         double ventaTotales = 0;
-        String ventas = "Ventas: \n";
+        String ventas = "Ventas: \n"+"-------------------------\n";
         do {
 
             opcion = Integer.parseInt(JOptionPane.showInputDialog(
@@ -56,7 +55,7 @@ public class Main {
             switch (opcion) {
                 case 1:
 
-                    pos = pedirCadena("Introduce la posicion que quieras");
+                    pos = pedirCadena("Introdusca la posicion  de la golosina que quiera");
 
                     if (validarPos(nombresGolosinas, pos)) {
 
@@ -65,16 +64,16 @@ public class Main {
 
                         if (hayValorPosicion(cantidad, fila, columna)) {
 
-                            JOptionPane.showMessageDialog(null, "Aqui tiene su golosiona: " + nombresGolosinas[fila][columna] + ". Gracias por su compra");
+                            JOptionPane.showMessageDialog(null, "Aqui tiene su golosiona: " + nombresGolosinas[fila][columna] + ". ¡Gracias por su compra!");
 
                             reducirPosicion(cantidad, fila, columna, 1);
 
                             ventaTotales += precio[fila][columna];
 
-                            ventas += nombresGolosinas[fila][columna] + " " + precio[fila][columna] + "\n";
+                            ventas += nombresGolosinas[fila][columna] + "  $" + precio[fila][columna] + "\n";
 
                         } else {
-                            JOptionPane.showMessageDialog(null, "No hay mas golosinas de este tipo, espere al técnico para que la rellene");
+                            JOptionPane.showMessageDialog(null, "No hay mas golosinas de este tipo");
                         }
 
                     } else {
@@ -89,11 +88,11 @@ public class Main {
                     break;
                 case 3:
 
-                    password = pedirCadena("Introduce la contraseña");
+                    password = pedirCadena("Introdusca la contraseña");
 
                     if (cadenaIguales(password, "Maquina2021")) {
-
-                        pos = pedirCadena("Introduce la posicion que quieras");
+                        JOptionPane.showMessageDialog(null, "Acceso Concedido");
+                        pos = pedirCadena("Introdusca la posicion de la golosina");
 
                         fila = extraerNumero(pos, 0);
                         columna = extraerNumero(pos, 1);
@@ -106,20 +105,20 @@ public class Main {
 
                             aumentarPosicion(cantidad, fila, columna, temp);
 
-                            JOptionPane.showMessageDialog(null, "Se ha incrementado la cantidad");
+                            JOptionPane.showMessageDialog(null, "Se han agregado " + temp + " "+nombresGolosinas[fila][columna]);
 
                         } else {
                             JOptionPane.showMessageDialog(null, "La posicion introducida no es valida");
                         }
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "La contraseña incorrecta");
+                        JOptionPane.showMessageDialog(null, "Acceso Denegado, Introdusca nuevamente la constraseña");
                     }
 
                     break;
                 case 4:
 
-                    JOptionPane.showMessageDialog(null, ventas + "Ganancia Total = " + ventaTotales);
+                    JOptionPane.showMessageDialog(null, ventas + "-------------------------\n"+"Ganancia Total: $" + ventaTotales);
 
                     break;
                 case 5:
@@ -218,7 +217,7 @@ public class Main {
         String info = "----------[GOLOSINAS]----------\n";
         for (i = 0; i < nombres.length; i++) {
             for (j = 0; j < nombres[i].length; j++) {
-                info += i + "" + j + "  " + nombres[i][j] + "  " + precios[i][j] + "\n";
+                info += i + "" + j + "  " + nombres[i][j] + "  $" + precios[i][j] +"\n";
             }
             info += "\n";
         }
@@ -226,18 +225,6 @@ public class Main {
 
     }
 
-    public static void mostrarVentas(String[][] nombres, double[][] precios) {
-        int i, j;
-        String info = "----------[GOLOSINAS]----------\n";
-        for (i = 0; i < nombres.length; i++) {
-            for (j = 0; j < nombres[i].length; j++) {
-                info += i + "" + j + "  " + nombres[i][j] + "  " + precios[i][j] + "\n";
-            }
-            info += "\n";
-        }
-        JOptionPane.showMessageDialog(null, info);
-
-    }
 
     public static boolean cadenaIguales(String cadena1, String cadena2) {
 
